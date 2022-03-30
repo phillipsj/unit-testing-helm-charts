@@ -1,0 +1,25 @@
+{{- template "applyVersionOverrides" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-nginx
+  labels:
+    component: {{ .Chart.Name }}-nginx
+  namespace: {{ .Release.Namespace }}
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}-nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}-nginx
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}-nginx
+        image: {{ .Values.nginx.repository }}:{{ .Values.nginx.tag }}
+        ports:
+        - containerPort: 80

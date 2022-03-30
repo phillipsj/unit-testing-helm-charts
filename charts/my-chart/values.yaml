@@ -1,0 +1,20 @@
+versionOverrides:
+  - constraint: ">= 1.21 < 1.24"
+    values:
+      nginx:
+        repository: docker.io/nginx
+        tag: 1.21
+  - constraint: "~ 1.20"
+    values:
+      nginx:
+        repository: docker.io/nginx
+        tag: 1.20.0
+  - constraint: "~ 1.19"
+    values:
+      nginx:
+        repository: docker.io/nginx
+        tag: 1.19
+
+nginx:
+  repository: docker.io/nginx
+  tag: latest
